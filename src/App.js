@@ -21,7 +21,12 @@ function App() {
 
   //Add Task
   const addTask = () => {
-    //
+    if (newTask) {
+      let num = toDO.length + 1;
+      let newEntry = { id: num, title: newTask, status: false };
+      setToDo([...toDO, newEntry]);
+      setNewTask("");
+    }
   };
 
   //Delete Task
@@ -51,17 +56,6 @@ function App() {
       <h2>To-Do List</h2>
       <br></br>
 
-      {/* Add Task */}
-      <div className="row">
-        <div className="col">
-          <input className="form-control form control-lg" />
-        </div>
-        <div className="col-auto">
-          <button className="btn btn-lg btn-success"> Add Task</button>
-        </div>
-      </div>
-      <br />
-
       {/* Update Task */}
       <div className="row">
         <div className="col">
@@ -69,6 +63,24 @@ function App() {
         </div>
         <div className="col-auto">
           <button className="btn btn-lg btn-warning">Update</button>
+        </div>
+      </div>
+      <br />
+
+      {/* Add Task */}
+      <div className="row">
+        <div className="col">
+          <input
+            value={newTask}
+            onChange={(e) => setNewTask(e.target.value)}
+            className="form-control form control-lg"
+          />
+        </div>
+        <div className="col-auto">
+          <button onClick={addTask} className="btn btn-lg btn-success">
+            {" "}
+            Add Task
+          </button>
         </div>
       </div>
 
