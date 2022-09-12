@@ -10,10 +10,7 @@ import "./App.css";
 
 function App() {
   // Tasks State
-  const [toDO, setToDo] = useState([
-    { id: 1, title: "Task 1", status: false },
-    { id: 2, title: "Task 2", status: false },
-  ]);
+  const [toDO, setToDo] = useState([]);
 
   //Temp State
   const [newTask, setNewTask] = useState("");
