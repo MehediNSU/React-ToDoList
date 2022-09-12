@@ -22,12 +22,21 @@ const ToDo = ({ toDo, markDone, setUpdateData, deleteTask }) => {
                     <span className="taskText">{task.title}</span>
                   </div>
                   <div className="iconsWrap">
-                    <span
-                      title="Completed / Not Completed"
-                      onClick={(e) => markDone(task.id)}
-                    >
-                      <FontAwesomeIcon icon={faCircleCheck} />
-                    </span>
+                    {task.status ? (
+                      <span2
+                        title="Not Completed"
+                        onClick={(e) => markDone(task.id)}
+                      >
+                        <FontAwesomeIcon icon={faCircleCheck} />
+                      </span2>
+                    ) : (
+                      <span
+                        title="Completed"
+                        onClick={(e) => markDone(task.id)}
+                      >
+                        <FontAwesomeIcon icon={faCircleCheck} />
+                      </span>
+                    )}
 
                     {task.status ? null : (
                       <span
