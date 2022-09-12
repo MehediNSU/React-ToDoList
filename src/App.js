@@ -72,38 +72,44 @@ function App() {
       <br></br>
 
       {/* Update Task */}
-      <div className="row">
-        <div className="col">
-          <input
-            value={updateData && updateData.title}
-            onChange={(e) => changeTask(e)}
-            className="form-control form control-lg"
-          />
-        </div>
-        <div className="col-auto">
-          <button onClick={updateTask} className="btn btn-lg btn-warning">
-            Update
-          </button>
-        </div>
-      </div>
-      <br />
-
-      {/* Add Task */}
-      <div className="row">
-        <div className="col">
-          <input
-            value={newTask}
-            onChange={(e) => setNewTask(e.target.value)}
-            className="form-control form control-lg"
-          />
-        </div>
-        <div className="col-auto">
-          <button onClick={addTask} className="btn btn-lg btn-success">
-            {" "}
-            Add Task
-          </button>
-        </div>
-      </div>
+      {updateData && updateData ? (
+        <>
+          <div className="row">
+            <div className="col">
+              <input
+                value={updateData && updateData.title}
+                onChange={(e) => changeTask(e)}
+                className="form-control form control-lg"
+              />
+            </div>
+            <div className="col-auto">
+              <button onClick={updateTask} className="btn btn-lg btn-warning">
+                Update
+              </button>
+            </div>
+          </div>
+          <br />
+        </>
+      ) : (
+        <>
+          {/* Add Task */}
+          <div className="row">
+            <div className="col">
+              <input
+                value={newTask}
+                onChange={(e) => setNewTask(e.target.value)}
+                className="form-control form control-lg"
+              />
+            </div>
+            <div className="col-auto">
+              <button onClick={addTask} className="btn btn-lg btn-success">
+                {" "}
+                Add Task
+              </button>
+            </div>
+          </div>
+        </>
+      )}
 
       {/* Display ToDos */}
 
