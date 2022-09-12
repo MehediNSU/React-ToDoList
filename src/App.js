@@ -2,12 +2,11 @@ import { useState } from "react";
 
 import AddTaskForm from "./components/AddTaskForm.jsx";
 import UpdateForm from "./components/UpdateForm.jsx";
-import ToDoForm from "./components/ToDo.jsx";
+import ToDo from "./components/ToDo.jsx";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./App.css";
-import ToDo from "./components/ToDo.jsx";
 
 function App() {
   // Tasks State
