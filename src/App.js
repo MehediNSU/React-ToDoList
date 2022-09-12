@@ -48,12 +48,20 @@ function App() {
 
   //Change task for update
   const changeTask = (e) => {
-    //
+    let newEntry = {
+      id: updateData.id,
+      title: e.target.value,
+      status: updateData.status ? true : false,
+    };
+    setUpdateData(newEntry);
   };
 
   //Update task
   const updateTask = (id) => {
-    //
+    let filterRecords = [...toDO].filter((task) => task.id !== updateData.id);
+    let updateObject = [...filterRecords, updateData];
+    setToDo(updateObject);
+    setUpdateData("");
   };
 
   return (
@@ -66,10 +74,16 @@ function App() {
       {/* Update Task */}
       <div className="row">
         <div className="col">
-          <input className="form-control form control-lg" />
+          <input
+            value={updateData && updateData.title}
+            onChange={(e) => changeTask(e)}
+            className="form-control form control-lg"
+          />
         </div>
         <div className="col-auto">
-          <button className="btn btn-lg btn-warning">Update</button>
+          <button onClick={updateTask} className="btn btn-lg btn-warning">
+            Update
+          </button>
         </div>
       </div>
       <br />
@@ -113,7 +127,16 @@ function App() {
                     </span>
 
                     {task.status ? null : (
-                      <span title="Edit">
+                      <span
+                        title="Edit"
+                        onClick={() =>
+                          setUpdateData({
+                            id: task.id,
+                            title: task.title,
+                            status: task.status ? true : false,
+                          })
+                        }
+                      >
                         <FontAwesomeIcon icon={faPen} />
                       </span>
                     )}
