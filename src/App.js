@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import AddTaskForm from "./components/AddTaskForm.jsx";
 import UpdateForm from "./components/UpdateForm.jsx";
@@ -8,13 +8,26 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./App.css";
 
+const getLocalStorage = () => {
+  let toDo = localStorage.getItem("toDo");
+  if (toDo) {
+    return (toDo = JSON.parse(toDo));
+  } else {
+    return [];
+  }
+};
+
 function App() {
   // Tasks State
-  const [toDo, setToDo] = useState([]);
+  const [toDo, setToDo] = useState(getLocalStorage());
 
   //Temp State
   const [newTask, setNewTask] = useState("");
   const [updateData, setUpdateData] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem("toDo", JSON.stringify(toDo));
+  }, [toDo]);
 
   //Add Task
   const addTask = () => {
